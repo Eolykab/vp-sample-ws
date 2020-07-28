@@ -1,0 +1,1144 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://virtualpostman.co.za/vp/webservices/VirtualPostman/v3/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="VirtualPostmanService" targetNamespace="http://virtualpostman.co.za/vp/webservices/VirtualPostman/v3/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://virtualpostman.co.za/vp/webservices/VirtualPostman/v3/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://virtualpostman.co.za/vp/webservices/VirtualPostman/v3/">
+  <xs:element name="archiveFile" type="tns:archiveFile"/>
+  <xs:element name="archiveFileResponse" type="tns:archiveFileResponse"/>
+  <xs:element name="canConvertDocumentContentToPdf" type="tns:canConvertDocumentContentToPdf"/>
+  <xs:element name="canConvertDocumentContentToPdfResponse" type="tns:canConvertDocumentContentToPdfResponse"/>
+  <xs:element name="createDeliveryProfile" type="tns:createDeliveryProfile"/>
+  <xs:element name="createDeliveryProfileResponse" type="tns:createDeliveryProfileResponse"/>
+  <xs:element name="createNodeIndex" type="tns:createNodeIndex"/>
+  <xs:element name="createNodeIndexResponse" type="tns:createNodeIndexResponse"/>
+  <xs:element name="deleteDeliveryProfiles" type="tns:deleteDeliveryProfiles"/>
+  <xs:element name="deleteDeliveryProfilesOnIndexMatch" type="tns:deleteDeliveryProfilesOnIndexMatch"/>
+  <xs:element name="deleteDeliveryProfilesOnIndexMatchResponse" type="tns:deleteDeliveryProfilesOnIndexMatchResponse"/>
+  <xs:element name="deleteDeliveryProfilesResponse" type="tns:deleteDeliveryProfilesResponse"/>
+  <xs:element name="deleteDocument" type="tns:deleteDocument"/>
+  <xs:element name="deleteDocumentResponse" type="tns:deleteDocumentResponse"/>
+  <xs:element name="duplicateArchiveDocument" type="tns:duplicateArchiveDocument"/>
+  <xs:element name="duplicateArchiveDocumentResponse" type="tns:duplicateArchiveDocumentResponse"/>
+  <xs:element name="extractAndArchiveEmailAttachments" type="tns:extractAndArchiveEmailAttachments"/>
+  <xs:element name="extractAndArchiveEmailAttachmentsResponse" type="tns:extractAndArchiveEmailAttachmentsResponse"/>
+  <xs:element name="getArchiveDocumentFileSize" type="tns:getArchiveDocumentFileSize"/>
+  <xs:element name="getArchiveDocumentFileSizeResponse" type="tns:getArchiveDocumentFileSizeResponse"/>
+  <xs:element name="getDocument" type="tns:getDocument"/>
+  <xs:element name="getDocumentContent" type="tns:getDocumentContent"/>
+  <xs:element name="getDocumentContentAsPdf" type="tns:getDocumentContentAsPdf"/>
+  <xs:element name="getDocumentContentAsPdfResponse" type="tns:getDocumentContentAsPdfResponse"/>
+  <xs:element name="getDocumentContentResponse" type="tns:getDocumentContentResponse"/>
+  <xs:element name="getDocumentResponse" type="tns:getDocumentResponse"/>
+  <xs:element name="getNodeChildren" type="tns:getNodeChildren"/>
+  <xs:element name="getNodeChildrenResponse" type="tns:getNodeChildrenResponse"/>
+  <xs:element name="getNodeIdForNodeName" type="tns:getNodeIdForNodeName"/>
+  <xs:element name="getNodeIdForNodeNameResponse" type="tns:getNodeIdForNodeNameResponse"/>
+  <xs:element name="getNodes" type="tns:getNodes"/>
+  <xs:element name="getNodesIndexNames" type="tns:getNodesIndexNames"/>
+  <xs:element name="getNodesIndexNamesResponse" type="tns:getNodesIndexNamesResponse"/>
+  <xs:element name="getNodesResponse" type="tns:getNodesResponse"/>
+  <xs:element name="getRootNode" type="tns:getRootNode"/>
+  <xs:element name="getRootNodeResponse" type="tns:getRootNodeResponse"/>
+  <xs:element name="getTransportProviders" type="tns:getTransportProviders"/>
+  <xs:element name="getTransportProvidersResponse" type="tns:getTransportProvidersResponse"/>
+  <xs:element name="getViewKeyForArchiveDocument" type="tns:getViewKeyForArchiveDocument"/>
+  <xs:element name="getViewKeyForArchiveDocumentResponse" type="tns:getViewKeyForArchiveDocumentResponse"/>
+  <xs:element name="getViewKeyForArchiveDocumentWithTimeout" type="tns:getViewKeyForArchiveDocumentWithTimeout"/>
+  <xs:element name="getViewKeyForArchiveDocumentWithTimeoutResponse" type="tns:getViewKeyForArchiveDocumentWithTimeoutResponse"/>
+  <xs:element name="simpleSearch" type="tns:simpleSearch"/>
+  <xs:element name="simpleSearchResponse" type="tns:simpleSearchResponse"/>
+  <xs:element name="updateDeliveryProfile" type="tns:updateDeliveryProfile"/>
+  <xs:element name="updateDeliveryProfileResponse" type="tns:updateDeliveryProfileResponse"/>
+  <xs:element name="updateIndexes" type="tns:updateIndexes"/>
+  <xs:element name="updateIndexesResponse" type="tns:updateIndexesResponse"/>
+  <xs:complexType name="getNodeChildren">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+      <xs:element name="nodeId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getNodeChildrenResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="children" type="tns:node"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="node">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="simpleSearch">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+      <xs:element name="nodeId" type="xs:long"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="indexes" type="tns:indexValue"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="indexValue">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="indexName" type="xs:string"/>
+      <xs:element minOccurs="0" name="indexValue" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="simpleSearchResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="documents" type="tns:document"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="document">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long"/>
+      <xs:element name="nodeId" type="xs:long"/>
+      <xs:element minOccurs="0" name="originalFileName" type="xs:string"/>
+      <xs:element minOccurs="0" name="contentType" type="xs:string"/>
+      <xs:element minOccurs="0" name="archiveDate" type="xs:dateTime"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="indexValues" nillable="true" type="tns:indexValue"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="duplicateArchiveDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+      <xs:element name="archiveDocumentId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="duplicateArchiveDocumentResponse">
+    <xs:sequence>
+      <xs:element name="newDocumentId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTransportProviders">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getTransportProvidersResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="transportProviders" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getDocumentContent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+      <xs:element name="documentId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getDocumentContentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentContent" type="xs:base64Binary"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createNodeIndex">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+      <xs:element minOccurs="0" name="nodeName" type="xs:string"/>
+      <xs:element minOccurs="0" name="indexName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createNodeIndexResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="getNodes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getNodesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="nodes" type="tns:node"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+      <xs:element name="archiveDocumentId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getDocumentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Document" type="tns:document"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="canConvertDocumentContentToPdf">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+      <xs:element name="documentId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="canConvertDocumentContentToPdfResponse">
+    <xs:sequence>
+      <xs:element name="canConvertDocumentContentToPdf" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getNodeIdForNodeName">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+      <xs:element minOccurs="0" name="nodeName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getNodeIdForNodeNameResponse">
+    <xs:sequence>
+      <xs:element name="nodeId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deleteDeliveryProfiles">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+      <xs:element name="nodeId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deleteDeliveryProfilesResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deleteDeliveryProfilesOnIndexMatch">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+      <xs:element name="nodeId" type="xs:long"/>
+      <xs:element minOccurs="0" name="arg2" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deleteDeliveryProfilesOnIndexMatchResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getViewKeyForArchiveDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+      <xs:element name="archiveDocumentId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getViewKeyForArchiveDocumentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="viewKey" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="archiveFile">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+      <xs:element name="nodeId" type="xs:long"/>
+      <xs:element minOccurs="0" name="contentType" type="xs:string"/>
+      <xs:element minOccurs="0" name="originalFileName" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="indexes" type="tns:indexValue"/>
+      <xs:element minOccurs="0" name="data" type="xs:base64Binary"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="archiveFileResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="archivedDocument" type="tns:document"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deleteDocument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+      <xs:element name="documentId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="deleteDocumentResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="getDocumentContentAsPdf">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+      <xs:element name="documentId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getDocumentContentAsPdfResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="documentContentAsPdf" type="xs:base64Binary"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getArchiveDocumentFileSize">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+      <xs:element name="archiveDocumentId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getArchiveDocumentFileSizeResponse">
+    <xs:sequence>
+      <xs:element name="fileSize" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getViewKeyForArchiveDocumentWithTimeout">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+      <xs:element name="archiveDocumentId" type="xs:long"/>
+      <xs:element name="timeout" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getViewKeyForArchiveDocumentWithTimeoutResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="viewKey" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateIndexes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+      <xs:element name="archiveDocumentId" type="xs:long"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="indexValues" type="tns:indexValue"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateIndexesResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="extractAndArchiveEmailAttachments">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+      <xs:element name="documentId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="extractAndArchiveEmailAttachmentsResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="attachmentArchiveIds" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getRootNode">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getRootNodeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="rootNode" type="tns:node"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createDeliveryProfile">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+      <xs:element name="nodeId" type="xs:long"/>
+      <xs:element minOccurs="0" name="nodeIndexName" type="xs:string"/>
+      <xs:element minOccurs="0" name="indexMatch" type="xs:string"/>
+      <xs:element minOccurs="0" name="transportProvider" type="xs:string"/>
+      <xs:element minOccurs="0" name="destination" type="xs:string"/>
+      <xs:element minOccurs="0" name="contactName" type="xs:string"/>
+      <xs:element minOccurs="0" name="companyName" type="xs:string"/>
+      <xs:element name="collationLevel" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="createDeliveryProfileResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateDeliveryProfile">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+      <xs:element name="nodeId" type="xs:long"/>
+      <xs:element minOccurs="0" name="nodeIndexName" type="xs:string"/>
+      <xs:element minOccurs="0" name="indexMatch" type="xs:string"/>
+      <xs:element minOccurs="0" name="transportProvider" type="xs:string"/>
+      <xs:element minOccurs="0" name="destination" type="xs:string"/>
+      <xs:element minOccurs="0" name="contactName" type="xs:string"/>
+      <xs:element minOccurs="0" name="companyName" type="xs:string"/>
+      <xs:element name="collationLevel" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateDeliveryProfileResponse">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="getNodesIndexNames">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="sessionId" type="xs:string"/>
+      <xs:element name="nodeId" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getNodesIndexNamesResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="nodeIndexesNames" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Authorization" type="tns:Authorization"/>
+  <xs:complexType name="Authorization">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InputOutput" type="tns:InputOutput"/>
+  <xs:complexType name="InputOutput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Authentication" type="tns:Authentication"/>
+  <xs:complexType name="Authentication">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InvalidArgument" type="tns:InvalidArgument"/>
+  <xs:complexType name="InvalidArgument">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IOException" type="tns:IOException"/>
+  <xs:complexType name="IOException">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InternalError" type="tns:InternalError"/>
+  <xs:complexType name="InternalError">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="duplicateArchiveDocumentResponse">
+    <wsdl:part element="tns:duplicateArchiveDocumentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getNodeChildren">
+    <wsdl:part element="tns:getNodeChildren" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentContentAsPdfResponse">
+    <wsdl:part element="tns:getDocumentContentAsPdfResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateIndexesResponse">
+    <wsdl:part element="tns:updateIndexesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="simpleSearch">
+    <wsdl:part element="tns:simpleSearch" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteDocumentResponse">
+    <wsdl:part element="tns:deleteDocumentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="duplicateArchiveDocument">
+    <wsdl:part element="tns:duplicateArchiveDocument" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTransportProviders">
+    <wsdl:part element="tns:getTransportProviders" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="simpleSearchResponse">
+    <wsdl:part element="tns:simpleSearchResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentContent">
+    <wsdl:part element="tns:getDocumentContent" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentContentResponse">
+    <wsdl:part element="tns:getDocumentContentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createNodeIndex">
+    <wsdl:part element="tns:createNodeIndex" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="canConvertDocumentContentToPdfResponse">
+    <wsdl:part element="tns:canConvertDocumentContentToPdfResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getNodeIdForNodeName">
+    <wsdl:part element="tns:getNodeIdForNodeName" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="IOException">
+    <wsdl:part element="tns:IOException" name="IOException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="archiveFileResponse">
+    <wsdl:part element="tns:archiveFileResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentResponse">
+    <wsdl:part element="tns:getDocumentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteDeliveryProfiles">
+    <wsdl:part element="tns:deleteDeliveryProfiles" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getViewKeyForArchiveDocument">
+    <wsdl:part element="tns:getViewKeyForArchiveDocument" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getArchiveDocumentFileSize">
+    <wsdl:part element="tns:getArchiveDocumentFileSize" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getViewKeyForArchiveDocumentWithTimeoutResponse">
+    <wsdl:part element="tns:getViewKeyForArchiveDocumentWithTimeoutResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getViewKeyForArchiveDocumentWithTimeout">
+    <wsdl:part element="tns:getViewKeyForArchiveDocumentWithTimeout" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateIndexes">
+    <wsdl:part element="tns:updateIndexes" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="extractAndArchiveEmailAttachmentsResponse">
+    <wsdl:part element="tns:extractAndArchiveEmailAttachmentsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRootNodeResponse">
+    <wsdl:part element="tns:getRootNodeResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AuthorizationFault">
+    <wsdl:part element="tns:Authorization" name="AuthorizationFault">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createDeliveryProfileResponse">
+    <wsdl:part element="tns:createDeliveryProfileResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createDeliveryProfile">
+    <wsdl:part element="tns:createDeliveryProfile" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getNodesIndexNames">
+    <wsdl:part element="tns:getNodesIndexNames" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InputOutputFault">
+    <wsdl:part element="tns:InputOutput" name="InputOutputFault">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createNodeIndexResponse">
+    <wsdl:part element="tns:createNodeIndexResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getNodeIdForNodeNameResponse">
+    <wsdl:part element="tns:getNodeIdForNodeNameResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InvalidArgumentFault">
+    <wsdl:part element="tns:InvalidArgument" name="InvalidArgumentFault">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InternalErrorFault">
+    <wsdl:part element="tns:InternalError" name="InternalErrorFault">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getNodesIndexNamesResponse">
+    <wsdl:part element="tns:getNodesIndexNamesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getNodes">
+    <wsdl:part element="tns:getNodes" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocument">
+    <wsdl:part element="tns:getDocument" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="canConvertDocumentContentToPdf">
+    <wsdl:part element="tns:canConvertDocumentContentToPdf" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateDeliveryProfileResponse">
+    <wsdl:part element="tns:updateDeliveryProfileResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTransportProvidersResponse">
+    <wsdl:part element="tns:getTransportProvidersResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteDeliveryProfilesOnIndexMatch">
+    <wsdl:part element="tns:deleteDeliveryProfilesOnIndexMatch" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="archiveFile">
+    <wsdl:part element="tns:archiveFile" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteDocument">
+    <wsdl:part element="tns:deleteDocument" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentContentAsPdf">
+    <wsdl:part element="tns:getDocumentContentAsPdf" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AuthenticationFault">
+    <wsdl:part element="tns:Authentication" name="AuthenticationFault">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getArchiveDocumentFileSizeResponse">
+    <wsdl:part element="tns:getArchiveDocumentFileSizeResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="extractAndArchiveEmailAttachments">
+    <wsdl:part element="tns:extractAndArchiveEmailAttachments" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRootNode">
+    <wsdl:part element="tns:getRootNode" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteDeliveryProfilesResponse">
+    <wsdl:part element="tns:deleteDeliveryProfilesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteDeliveryProfilesOnIndexMatchResponse">
+    <wsdl:part element="tns:deleteDeliveryProfilesOnIndexMatchResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateDeliveryProfile">
+    <wsdl:part element="tns:updateDeliveryProfile" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getViewKeyForArchiveDocumentResponse">
+    <wsdl:part element="tns:getViewKeyForArchiveDocumentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getNodeChildrenResponse">
+    <wsdl:part element="tns:getNodeChildrenResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getNodesResponse">
+    <wsdl:part element="tns:getNodesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="VirtualPostman">
+    <wsdl:operation name="getNodeChildren">
+      <wsdl:input message="tns:getNodeChildren" name="getNodeChildren">
+    </wsdl:input>
+      <wsdl:output message="tns:getNodeChildrenResponse" name="getNodeChildrenResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="simpleSearch">
+      <wsdl:input message="tns:simpleSearch" name="simpleSearch">
+    </wsdl:input>
+      <wsdl:output message="tns:simpleSearchResponse" name="simpleSearchResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="duplicateArchiveDocument">
+      <wsdl:input message="tns:duplicateArchiveDocument" name="duplicateArchiveDocument">
+    </wsdl:input>
+      <wsdl:output message="tns:duplicateArchiveDocumentResponse" name="duplicateArchiveDocumentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InputOutputFault" name="InputOutputFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvalidArgumentFault" name="InvalidArgumentFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getTransportProviders">
+      <wsdl:input message="tns:getTransportProviders" name="getTransportProviders">
+    </wsdl:input>
+      <wsdl:output message="tns:getTransportProvidersResponse" name="getTransportProvidersResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentContent">
+      <wsdl:input message="tns:getDocumentContent" name="getDocumentContent">
+    </wsdl:input>
+      <wsdl:output message="tns:getDocumentContentResponse" name="getDocumentContentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:IOException" name="IOException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createNodeIndex">
+      <wsdl:input message="tns:createNodeIndex" name="createNodeIndex">
+    </wsdl:input>
+      <wsdl:output message="tns:createNodeIndexResponse" name="createNodeIndexResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvalidArgumentFault" name="InvalidArgumentFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getNodes">
+      <wsdl:input message="tns:getNodes" name="getNodes">
+    </wsdl:input>
+      <wsdl:output message="tns:getNodesResponse" name="getNodesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDocument">
+      <wsdl:input message="tns:getDocument" name="getDocument">
+    </wsdl:input>
+      <wsdl:output message="tns:getDocumentResponse" name="getDocumentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvalidArgumentFault" name="InvalidArgumentFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="canConvertDocumentContentToPdf">
+      <wsdl:input message="tns:canConvertDocumentContentToPdf" name="canConvertDocumentContentToPdf">
+    </wsdl:input>
+      <wsdl:output message="tns:canConvertDocumentContentToPdfResponse" name="canConvertDocumentContentToPdfResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvalidArgumentFault" name="InvalidArgumentFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:IOException" name="IOException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getNodeIdForNodeName">
+      <wsdl:input message="tns:getNodeIdForNodeName" name="getNodeIdForNodeName">
+    </wsdl:input>
+      <wsdl:output message="tns:getNodeIdForNodeNameResponse" name="getNodeIdForNodeNameResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvalidArgumentFault" name="InvalidArgumentFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteDeliveryProfiles">
+      <wsdl:input message="tns:deleteDeliveryProfiles" name="deleteDeliveryProfiles">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteDeliveryProfilesResponse" name="deleteDeliveryProfilesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteDeliveryProfilesOnIndexMatch">
+      <wsdl:input message="tns:deleteDeliveryProfilesOnIndexMatch" name="deleteDeliveryProfilesOnIndexMatch">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteDeliveryProfilesOnIndexMatchResponse" name="deleteDeliveryProfilesOnIndexMatchResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getViewKeyForArchiveDocument">
+      <wsdl:input message="tns:getViewKeyForArchiveDocument" name="getViewKeyForArchiveDocument">
+    </wsdl:input>
+      <wsdl:output message="tns:getViewKeyForArchiveDocumentResponse" name="getViewKeyForArchiveDocumentResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="archiveFile">
+      <wsdl:input message="tns:archiveFile" name="archiveFile">
+    </wsdl:input>
+      <wsdl:output message="tns:archiveFileResponse" name="archiveFileResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:IOException" name="IOException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteDocument">
+      <wsdl:input message="tns:deleteDocument" name="deleteDocument">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteDocumentResponse" name="deleteDocumentResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentContentAsPdf">
+      <wsdl:input message="tns:getDocumentContentAsPdf" name="getDocumentContentAsPdf">
+    </wsdl:input>
+      <wsdl:output message="tns:getDocumentContentAsPdfResponse" name="getDocumentContentAsPdfResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InputOutputFault" name="InputOutputFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvalidArgumentFault" name="InvalidArgumentFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getArchiveDocumentFileSize">
+      <wsdl:input message="tns:getArchiveDocumentFileSize" name="getArchiveDocumentFileSize">
+    </wsdl:input>
+      <wsdl:output message="tns:getArchiveDocumentFileSizeResponse" name="getArchiveDocumentFileSizeResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvalidArgumentFault" name="InvalidArgumentFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getViewKeyForArchiveDocumentWithTimeout">
+      <wsdl:input message="tns:getViewKeyForArchiveDocumentWithTimeout" name="getViewKeyForArchiveDocumentWithTimeout">
+    </wsdl:input>
+      <wsdl:output message="tns:getViewKeyForArchiveDocumentWithTimeoutResponse" name="getViewKeyForArchiveDocumentWithTimeoutResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InternalErrorFault" name="InternalErrorFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateIndexes">
+      <wsdl:input message="tns:updateIndexes" name="updateIndexes">
+    </wsdl:input>
+      <wsdl:output message="tns:updateIndexesResponse" name="updateIndexesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="extractAndArchiveEmailAttachments">
+      <wsdl:input message="tns:extractAndArchiveEmailAttachments" name="extractAndArchiveEmailAttachments">
+    </wsdl:input>
+      <wsdl:output message="tns:extractAndArchiveEmailAttachmentsResponse" name="extractAndArchiveEmailAttachmentsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InputOutputFault" name="InputOutputFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvalidArgumentFault" name="InvalidArgumentFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getRootNode">
+      <wsdl:input message="tns:getRootNode" name="getRootNode">
+    </wsdl:input>
+      <wsdl:output message="tns:getRootNodeResponse" name="getRootNodeResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createDeliveryProfile">
+      <wsdl:input message="tns:createDeliveryProfile" name="createDeliveryProfile">
+    </wsdl:input>
+      <wsdl:output message="tns:createDeliveryProfileResponse" name="createDeliveryProfileResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateDeliveryProfile">
+      <wsdl:input message="tns:updateDeliveryProfile" name="updateDeliveryProfile">
+    </wsdl:input>
+      <wsdl:output message="tns:updateDeliveryProfileResponse" name="updateDeliveryProfileResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InvalidArgumentFault" name="InvalidArgumentFault">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getNodesIndexNames">
+      <wsdl:input message="tns:getNodesIndexNames" name="getNodesIndexNames">
+    </wsdl:input>
+      <wsdl:output message="tns:getNodesIndexNamesResponse" name="getNodesIndexNamesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="VirtualPostmanServiceSoapBinding" type="tns:VirtualPostman">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getNodeChildren">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getNodeChildren">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getNodeChildrenResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="simpleSearch">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="simpleSearch">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="simpleSearchResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="duplicateArchiveDocument">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="duplicateArchiveDocument">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="duplicateArchiveDocumentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AuthorizationFault">
+        <soap:fault name="AuthorizationFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InputOutputFault">
+        <soap:fault name="InputOutputFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidArgumentFault">
+        <soap:fault name="InvalidArgumentFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFault">
+        <soap:fault name="AuthenticationFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getTransportProviders">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getTransportProviders">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getTransportProvidersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentContent">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getDocumentContent">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDocumentContentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="IOException">
+        <soap:fault name="IOException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createNodeIndex">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createNodeIndex">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createNodeIndexResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AuthorizationFault">
+        <soap:fault name="AuthorizationFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidArgumentFault">
+        <soap:fault name="InvalidArgumentFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFault">
+        <soap:fault name="AuthenticationFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getNodes">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getNodes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getNodesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="canConvertDocumentContentToPdf">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="canConvertDocumentContentToPdf">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="canConvertDocumentContentToPdfResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AuthorizationFault">
+        <soap:fault name="AuthorizationFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidArgumentFault">
+        <soap:fault name="InvalidArgumentFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="IOException">
+        <soap:fault name="IOException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFault">
+        <soap:fault name="AuthenticationFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDocument">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getDocument">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDocumentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AuthorizationFault">
+        <soap:fault name="AuthorizationFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidArgumentFault">
+        <soap:fault name="InvalidArgumentFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFault">
+        <soap:fault name="AuthenticationFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getNodeIdForNodeName">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getNodeIdForNodeName">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getNodeIdForNodeNameResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AuthorizationFault">
+        <soap:fault name="AuthorizationFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidArgumentFault">
+        <soap:fault name="InvalidArgumentFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFault">
+        <soap:fault name="AuthenticationFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteDeliveryProfiles">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteDeliveryProfiles">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteDeliveryProfilesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteDeliveryProfilesOnIndexMatch">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteDeliveryProfilesOnIndexMatch">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteDeliveryProfilesOnIndexMatchResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getViewKeyForArchiveDocument">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getViewKeyForArchiveDocument">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getViewKeyForArchiveDocumentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="archiveFile">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="archiveFile">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="archiveFileResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="IOException">
+        <soap:fault name="IOException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteDocument">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteDocument">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteDocumentResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentContentAsPdf">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getDocumentContentAsPdf">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDocumentContentAsPdfResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AuthorizationFault">
+        <soap:fault name="AuthorizationFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InputOutputFault">
+        <soap:fault name="InputOutputFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidArgumentFault">
+        <soap:fault name="InvalidArgumentFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFault">
+        <soap:fault name="AuthenticationFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getArchiveDocumentFileSize">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getArchiveDocumentFileSize">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getArchiveDocumentFileSizeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AuthorizationFault">
+        <soap:fault name="AuthorizationFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidArgumentFault">
+        <soap:fault name="InvalidArgumentFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFault">
+        <soap:fault name="AuthenticationFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getViewKeyForArchiveDocumentWithTimeout">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getViewKeyForArchiveDocumentWithTimeout">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getViewKeyForArchiveDocumentWithTimeoutResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InternalErrorFault">
+        <soap:fault name="InternalErrorFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateIndexes">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateIndexes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateIndexesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="extractAndArchiveEmailAttachments">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="extractAndArchiveEmailAttachments">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="extractAndArchiveEmailAttachmentsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AuthorizationFault">
+        <soap:fault name="AuthorizationFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InputOutputFault">
+        <soap:fault name="InputOutputFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidArgumentFault">
+        <soap:fault name="InvalidArgumentFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFault">
+        <soap:fault name="AuthenticationFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getRootNode">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getRootNode">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRootNodeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createDeliveryProfile">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createDeliveryProfile">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createDeliveryProfileResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateDeliveryProfile">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateDeliveryProfile">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateDeliveryProfileResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="AuthorizationFault">
+        <soap:fault name="AuthorizationFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidArgumentFault">
+        <soap:fault name="InvalidArgumentFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AuthenticationFault">
+        <soap:fault name="AuthenticationFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getNodesIndexNames">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getNodesIndexNames">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getNodesIndexNamesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VirtualPostmanService">
+    <wsdl:port binding="tns:VirtualPostmanServiceSoapBinding" name="VirtualPostmanPort">
+      <soap:address location="http://localhost:8080/webservices/SOAP/VirtualPostman-v3.3"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

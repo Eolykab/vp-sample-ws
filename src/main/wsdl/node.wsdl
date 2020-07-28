@@ -1,0 +1,829 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://virtualpostman.co.za/vp/webservices/Nodes/v1/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="NodesService" targetNamespace="http://virtualpostman.co.za/vp/webservices/Nodes/v1/">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://virtualpostman.co.za/vp/webservices/Nodes/v1/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://virtualpostman.co.za/vp/webservices/Nodes/v1/">
+            <xs:element name="addIndexValueListItem" type="tns:addIndexValueListItem"/>
+            <xs:element name="addIndexValueListItemResponse" type="tns:addIndexValueListItemResponse"/>
+            <xs:element name="addNodeIndex" type="tns:addNodeIndex"/>
+            <xs:element name="addNodeIndexResponse" type="tns:addNodeIndexResponse"/>
+            <xs:element name="createIndexValueList" type="tns:createIndexValueList"/>
+            <xs:element name="createIndexValueListResponse" type="tns:createIndexValueListResponse"/>
+            <xs:element name="createNode" type="tns:createNode"/>
+            <xs:element name="createNodeCategory" type="tns:createNodeCategory"/>
+            <xs:element name="createNodeCategoryResponse" type="tns:createNodeCategoryResponse"/>
+            <xs:element name="createNodeResponse" type="tns:createNodeResponse"/>
+            <xs:element name="getIndexValueListItems" type="tns:getIndexValueListItems"/>
+            <xs:element name="getIndexValueListItemsResponse" type="tns:getIndexValueListItemsResponse"/>
+            <xs:element name="getIndexValueListNames" type="tns:getIndexValueListNames"/>
+            <xs:element name="getIndexValueListNamesResponse" type="tns:getIndexValueListNamesResponse"/>
+            <xs:element name="getNodeCategories" type="tns:getNodeCategories"/>
+            <xs:element name="getNodeCategoriesResponse" type="tns:getNodeCategoriesResponse"/>
+            <xs:element name="getNodeIndexValueListName" type="tns:getNodeIndexValueListName"/>
+            <xs:element name="getNodeIndexValueListNameResponse" type="tns:getNodeIndexValueListNameResponse"/>
+            <xs:element name="getNodes" type="tns:getNodes"/>
+            <xs:element name="getNodesResponse" type="tns:getNodesResponse"/>
+            <xs:element name="renameNode" type="tns:renameNode"/>
+            <xs:element name="renameNodeCategory" type="tns:renameNodeCategory"/>
+            <xs:element name="renameNodeCategoryResponse" type="tns:renameNodeCategoryResponse"/>
+            <xs:element name="renameNodeResponse" type="tns:renameNodeResponse"/>
+            <xs:element name="setNodeCategory" type="tns:setNodeCategory"/>
+            <xs:element name="setNodeCategoryResponse" type="tns:setNodeCategoryResponse"/>
+            <xs:element name="updateNodeIndex" type="tns:updateNodeIndex"/>
+            <xs:element name="updateNodeIndexResponse" type="tns:updateNodeIndexResponse"/>
+            <xs:complexType name="createIndexValueList">
+                <xs:sequence>
+                    <xs:element name="sessionId" type="xs:string"/>
+                    <xs:element name="indexValueListName" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="createIndexValueListResponse">
+                <xs:sequence/>
+            </xs:complexType>
+            <xs:complexType name="addNodeIndex">
+                <xs:sequence>
+                    <xs:element name="sessionId" type="xs:string"/>
+                    <xs:element name="nodeName" type="xs:string"/>
+                    <xs:element name="indexName" type="xs:string"/>
+                    <xs:element name="type" type="tns:nodeIndexType"/>
+                    <xs:element name="required" type="xs:boolean"/>
+                    <xs:element name="partOfKey" type="xs:boolean"/>
+                    <xs:element name="hidden" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="addNodeIndexResponse">
+                <xs:sequence/>
+            </xs:complexType>
+            <xs:complexType name="renameNodeCategory">
+                <xs:sequence>
+                    <xs:element name="sessionId" type="xs:string"/>
+                    <xs:element name="oldName" type="xs:string"/>
+                    <xs:element name="newName" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="renameNodeCategoryResponse">
+                <xs:sequence/>
+            </xs:complexType>
+            <xs:complexType name="createNodeCategory">
+                <xs:sequence>
+                    <xs:element name="sessionId" type="xs:string"/>
+                    <xs:element name="name" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="createNodeCategoryResponse">
+                <xs:sequence/>
+            </xs:complexType>
+            <xs:complexType name="getNodeCategories">
+                <xs:sequence>
+                    <xs:element name="sessionId" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getNodeCategoriesResponse">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="nodeCategories" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="renameNode">
+                <xs:sequence>
+                    <xs:element name="sessionId" type="xs:string"/>
+                    <xs:element name="oldName" type="xs:string"/>
+                    <xs:element name="newName" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="renameNodeResponse">
+                <xs:sequence/>
+            </xs:complexType>
+            <xs:complexType name="createNode">
+                <xs:sequence>
+                    <xs:element name="sessionId" type="xs:string"/>
+                    <xs:element name="nodeCategoryName" type="xs:string"/>
+                    <xs:element name="nodeName" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="index" type="tns:NodeIndex"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="NodeIndex">
+                <xs:all>
+                    <xs:element name="name" type="xs:string"/>
+                    <xs:element name="type" type="tns:nodeIndexType"/>
+                    <xs:element name="required" type="xs:boolean"/>
+                    <xs:element name="partOfKey" type="xs:boolean"/>
+                    <xs:element name="hidden" type="xs:boolean"/>
+                    <xs:element minOccurs="0" name="indexValueListName" type="xs:string"/>
+                </xs:all>
+            </xs:complexType>
+            <xs:complexType name="createNodeResponse">
+                <xs:sequence>
+                    <xs:element name="nodeId" type="xs:long"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getNodes">
+                <xs:sequence>
+                    <xs:element name="sessionId" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getNodesResponse">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="nodes" type="tns:Node"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="Node">
+                <xs:all>
+                    <xs:element name="nodeId" type="xs:long"/>
+                    <xs:element name="nodeCategoryName" type="xs:string"/>
+                    <xs:element name="nodeName" type="xs:string"/>
+                    <xs:element name="indexes">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element maxOccurs="unbounded" minOccurs="0" name="index" type="tns:NodeIndex"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:all>
+            </xs:complexType>
+            <xs:complexType name="setNodeCategory">
+                <xs:sequence>
+                    <xs:element name="sessionId" type="xs:string"/>
+                    <xs:element name="nodeName" type="xs:string"/>
+                    <xs:element name="nodeCategoryName" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="setNodeCategoryResponse">
+                <xs:sequence/>
+            </xs:complexType>
+            <xs:complexType name="updateNodeIndex">
+                <xs:sequence>
+                    <xs:element name="sessionId" type="xs:string"/>
+                    <xs:element name="nodeName" type="xs:string"/>
+                    <xs:element name="indexName" type="xs:string"/>
+                    <xs:element minOccurs="0" name="newIndexName" type="xs:string"/>
+                    <xs:element name="type" type="tns:nodeIndexType"/>
+                    <xs:element minOccurs="0" name="indexValueListName" type="xs:string"/>
+                    <xs:element name="required" type="xs:boolean"/>
+                    <xs:element name="partOfKey" type="xs:boolean"/>
+                    <xs:element name="hidden" type="xs:boolean"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="updateNodeIndexResponse">
+                <xs:sequence/>
+            </xs:complexType>
+            <xs:complexType name="addIndexValueListItem">
+                <xs:sequence>
+                    <xs:element name="sessionId" type="xs:string"/>
+                    <xs:element name="indexValueListName" type="xs:string"/>
+                    <xs:element name="indexValueListItem" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="addIndexValueListItemResponse">
+                <xs:sequence/>
+            </xs:complexType>
+            <xs:complexType name="getNodeIndexValueListName">
+                <xs:sequence>
+                    <xs:element name="sessionId" type="xs:string"/>
+                    <xs:element name="nodeName" type="xs:string"/>
+                    <xs:element name="indexName" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getNodeIndexValueListNameResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="indexValueListName" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getIndexValueListItems">
+                <xs:sequence>
+                    <xs:element name="sessionId" type="xs:string"/>
+                    <xs:element name="indexValueListName" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getIndexValueListItemsResponse">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="indexValueListItems" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getIndexValueListNames">
+                <xs:sequence>
+                    <xs:element name="sessionId" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="getIndexValueListNamesResponse">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="indexValueListNames" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="nodeIndexType">
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="STRING"/>
+                    <xs:enumeration value="BOOLEAN"/>
+                    <xs:enumeration value="DATE"/>
+                    <xs:enumeration value="DATETIME"/>
+                    <xs:enumeration value="TIME"/>
+                    <xs:enumeration value="ENUM"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:element name="InvalidArgument" type="tns:InvalidArgument"/>
+            <xs:complexType name="InvalidArgument">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="message" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="Authentication" type="tns:Authentication"/>
+            <xs:complexType name="Authentication">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="message" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="DuplicateRecord" type="tns:DuplicateRecord"/>
+            <xs:complexType name="DuplicateRecord">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="message" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="Authorization" type="tns:Authorization"/>
+            <xs:complexType name="Authorization">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="message" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="renameNodeResponse">
+        <wsdl:part element="tns:renameNodeResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="InvalidArgumentFault">
+        <wsdl:part element="tns:InvalidArgument" name="InvalidArgumentFault">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="createIndexValueList">
+        <wsdl:part element="tns:createIndexValueList" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="renameNodeCategory">
+        <wsdl:part element="tns:renameNodeCategory" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="createNodeCategory">
+        <wsdl:part element="tns:createNodeCategory" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getNodes">
+        <wsdl:part element="tns:getNodes" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="setNodeCategory">
+        <wsdl:part element="tns:setNodeCategory" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getNodeCategoriesResponse">
+        <wsdl:part element="tns:getNodeCategoriesResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getIndexValueListItemsResponse">
+        <wsdl:part element="tns:getIndexValueListItemsResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getIndexValueListItems">
+        <wsdl:part element="tns:getIndexValueListItems" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="DuplicateRecordFault">
+        <wsdl:part element="tns:DuplicateRecord" name="DuplicateRecordFault">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="addIndexValueListItemResponse">
+        <wsdl:part element="tns:addIndexValueListItemResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="renameNodeCategoryResponse">
+        <wsdl:part element="tns:renameNodeCategoryResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="updateNodeIndexResponse">
+        <wsdl:part element="tns:updateNodeIndexResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="AuthenticationFault">
+        <wsdl:part element="tns:Authentication" name="AuthenticationFault">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="addNodeIndex">
+        <wsdl:part element="tns:addNodeIndex" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getNodeIndexValueListNameResponse">
+        <wsdl:part element="tns:getNodeIndexValueListNameResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getNodeCategories">
+        <wsdl:part element="tns:getNodeCategories" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="renameNode">
+        <wsdl:part element="tns:renameNode" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="createNodeCategoryResponse">
+        <wsdl:part element="tns:createNodeCategoryResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="createNode">
+        <wsdl:part element="tns:createNode" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="createNodeResponse">
+        <wsdl:part element="tns:createNodeResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="createIndexValueListResponse">
+        <wsdl:part element="tns:createIndexValueListResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="updateNodeIndex">
+        <wsdl:part element="tns:updateNodeIndex" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="AuthorizationFault">
+        <wsdl:part element="tns:Authorization" name="AuthorizationFault">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getNodesResponse">
+        <wsdl:part element="tns:getNodesResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="setNodeCategoryResponse">
+        <wsdl:part element="tns:setNodeCategoryResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="addIndexValueListItem">
+        <wsdl:part element="tns:addIndexValueListItem" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getNodeIndexValueListName">
+        <wsdl:part element="tns:getNodeIndexValueListName" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="addNodeIndexResponse">
+        <wsdl:part element="tns:addNodeIndexResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getIndexValueListNamesResponse">
+        <wsdl:part element="tns:getIndexValueListNamesResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getIndexValueListNames">
+        <wsdl:part element="tns:getIndexValueListNames" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="Nodes">
+        <wsdl:operation name="createIndexValueList">
+            <wsdl:input message="tns:createIndexValueList" name="createIndexValueList">
+            </wsdl:input>
+            <wsdl:output message="tns:createIndexValueListResponse" name="createIndexValueListResponse">
+            </wsdl:output>
+            <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:InvalidArgumentFault" name="InvalidArgumentFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:DuplicateRecordFault" name="DuplicateRecordFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="addNodeIndex">
+            <wsdl:input message="tns:addNodeIndex" name="addNodeIndex">
+            </wsdl:input>
+            <wsdl:output message="tns:addNodeIndexResponse" name="addNodeIndexResponse">
+            </wsdl:output>
+            <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:InvalidArgumentFault" name="InvalidArgumentFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:DuplicateRecordFault" name="DuplicateRecordFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="renameNodeCategory">
+            <wsdl:input message="tns:renameNodeCategory" name="renameNodeCategory">
+            </wsdl:input>
+            <wsdl:output message="tns:renameNodeCategoryResponse" name="renameNodeCategoryResponse">
+            </wsdl:output>
+            <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:InvalidArgumentFault" name="InvalidArgumentFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:DuplicateRecordFault" name="DuplicateRecordFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createNodeCategory">
+            <wsdl:input message="tns:createNodeCategory" name="createNodeCategory">
+            </wsdl:input>
+            <wsdl:output message="tns:createNodeCategoryResponse" name="createNodeCategoryResponse">
+            </wsdl:output>
+            <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:InvalidArgumentFault" name="InvalidArgumentFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:DuplicateRecordFault" name="DuplicateRecordFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getNodeCategories">
+            <wsdl:input message="tns:getNodeCategories" name="getNodeCategories">
+            </wsdl:input>
+            <wsdl:output message="tns:getNodeCategoriesResponse" name="getNodeCategoriesResponse">
+            </wsdl:output>
+            <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="renameNode">
+            <wsdl:input message="tns:renameNode" name="renameNode">
+            </wsdl:input>
+            <wsdl:output message="tns:renameNodeResponse" name="renameNodeResponse">
+            </wsdl:output>
+            <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:InvalidArgumentFault" name="InvalidArgumentFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:DuplicateRecordFault" name="DuplicateRecordFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createNode">
+            <wsdl:input message="tns:createNode" name="createNode">
+            </wsdl:input>
+            <wsdl:output message="tns:createNodeResponse" name="createNodeResponse">
+            </wsdl:output>
+            <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:InvalidArgumentFault" name="InvalidArgumentFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:DuplicateRecordFault" name="DuplicateRecordFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getNodes">
+            <wsdl:input message="tns:getNodes" name="getNodes">
+            </wsdl:input>
+            <wsdl:output message="tns:getNodesResponse" name="getNodesResponse">
+            </wsdl:output>
+            <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="setNodeCategory">
+            <wsdl:input message="tns:setNodeCategory" name="setNodeCategory">
+            </wsdl:input>
+            <wsdl:output message="tns:setNodeCategoryResponse" name="setNodeCategoryResponse">
+            </wsdl:output>
+            <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:InvalidArgumentFault" name="InvalidArgumentFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateNodeIndex">
+            <wsdl:input message="tns:updateNodeIndex" name="updateNodeIndex">
+            </wsdl:input>
+            <wsdl:output message="tns:updateNodeIndexResponse" name="updateNodeIndexResponse">
+            </wsdl:output>
+            <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:InvalidArgumentFault" name="InvalidArgumentFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:DuplicateRecordFault" name="DuplicateRecordFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="addIndexValueListItem">
+            <wsdl:input message="tns:addIndexValueListItem" name="addIndexValueListItem">
+            </wsdl:input>
+            <wsdl:output message="tns:addIndexValueListItemResponse" name="addIndexValueListItemResponse">
+            </wsdl:output>
+            <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:InvalidArgumentFault" name="InvalidArgumentFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:DuplicateRecordFault" name="DuplicateRecordFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getNodeIndexValueListName">
+            <wsdl:input message="tns:getNodeIndexValueListName" name="getNodeIndexValueListName">
+            </wsdl:input>
+            <wsdl:output message="tns:getNodeIndexValueListNameResponse" name="getNodeIndexValueListNameResponse">
+            </wsdl:output>
+            <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:InvalidArgumentFault" name="InvalidArgumentFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getIndexValueListItems">
+            <wsdl:input message="tns:getIndexValueListItems" name="getIndexValueListItems">
+            </wsdl:input>
+            <wsdl:output message="tns:getIndexValueListItemsResponse" name="getIndexValueListItemsResponse">
+            </wsdl:output>
+            <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:InvalidArgumentFault" name="InvalidArgumentFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getIndexValueListNames">
+            <wsdl:input message="tns:getIndexValueListNames" name="getIndexValueListNames">
+            </wsdl:input>
+            <wsdl:output message="tns:getIndexValueListNamesResponse" name="getIndexValueListNamesResponse">
+            </wsdl:output>
+            <wsdl:fault message="tns:AuthorizationFault" name="AuthorizationFault">
+            </wsdl:fault>
+            <wsdl:fault message="tns:AuthenticationFault" name="AuthenticationFault">
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="NodesServiceSoapBinding" type="tns:Nodes">
+        <soap12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="createIndexValueList">
+            <soap12:operation soapAction="" style="document"/>
+            <wsdl:input name="createIndexValueList">
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="createIndexValueListResponse">
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="AuthorizationFault">
+                <soap12:fault name="AuthorizationFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="InvalidArgumentFault">
+                <soap12:fault name="InvalidArgumentFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="DuplicateRecordFault">
+                <soap12:fault name="DuplicateRecordFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="AuthenticationFault">
+                <soap12:fault name="AuthenticationFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="addNodeIndex">
+            <soap12:operation soapAction="" style="document"/>
+            <wsdl:input name="addNodeIndex">
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="addNodeIndexResponse">
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="AuthorizationFault">
+                <soap12:fault name="AuthorizationFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="InvalidArgumentFault">
+                <soap12:fault name="InvalidArgumentFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="DuplicateRecordFault">
+                <soap12:fault name="DuplicateRecordFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="AuthenticationFault">
+                <soap12:fault name="AuthenticationFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="renameNodeCategory">
+            <soap12:operation soapAction="" style="document"/>
+            <wsdl:input name="renameNodeCategory">
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="renameNodeCategoryResponse">
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="AuthorizationFault">
+                <soap12:fault name="AuthorizationFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="InvalidArgumentFault">
+                <soap12:fault name="InvalidArgumentFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="DuplicateRecordFault">
+                <soap12:fault name="DuplicateRecordFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="AuthenticationFault">
+                <soap12:fault name="AuthenticationFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createNodeCategory">
+            <soap12:operation soapAction="" style="document"/>
+            <wsdl:input name="createNodeCategory">
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="createNodeCategoryResponse">
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="AuthorizationFault">
+                <soap12:fault name="AuthorizationFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="InvalidArgumentFault">
+                <soap12:fault name="InvalidArgumentFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="DuplicateRecordFault">
+                <soap12:fault name="DuplicateRecordFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="AuthenticationFault">
+                <soap12:fault name="AuthenticationFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getNodeCategories">
+            <soap12:operation soapAction="" style="document"/>
+            <wsdl:input name="getNodeCategories">
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getNodeCategoriesResponse">
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="AuthorizationFault">
+                <soap12:fault name="AuthorizationFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="AuthenticationFault">
+                <soap12:fault name="AuthenticationFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="renameNode">
+            <soap12:operation soapAction="" style="document"/>
+            <wsdl:input name="renameNode">
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="renameNodeResponse">
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="AuthorizationFault">
+                <soap12:fault name="AuthorizationFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="InvalidArgumentFault">
+                <soap12:fault name="InvalidArgumentFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="DuplicateRecordFault">
+                <soap12:fault name="DuplicateRecordFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="AuthenticationFault">
+                <soap12:fault name="AuthenticationFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createNode">
+            <soap12:operation soapAction="" style="document"/>
+            <wsdl:input name="createNode">
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="createNodeResponse">
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="AuthorizationFault">
+                <soap12:fault name="AuthorizationFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="InvalidArgumentFault">
+                <soap12:fault name="InvalidArgumentFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="DuplicateRecordFault">
+                <soap12:fault name="DuplicateRecordFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="AuthenticationFault">
+                <soap12:fault name="AuthenticationFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getNodes">
+            <soap12:operation soapAction="" style="document"/>
+            <wsdl:input name="getNodes">
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getNodesResponse">
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="AuthorizationFault">
+                <soap12:fault name="AuthorizationFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="AuthenticationFault">
+                <soap12:fault name="AuthenticationFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="setNodeCategory">
+            <soap12:operation soapAction="" style="document"/>
+            <wsdl:input name="setNodeCategory">
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="setNodeCategoryResponse">
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="AuthorizationFault">
+                <soap12:fault name="AuthorizationFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="InvalidArgumentFault">
+                <soap12:fault name="InvalidArgumentFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="AuthenticationFault">
+                <soap12:fault name="AuthenticationFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateNodeIndex">
+            <soap12:operation soapAction="" style="document"/>
+            <wsdl:input name="updateNodeIndex">
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="updateNodeIndexResponse">
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="AuthorizationFault">
+                <soap12:fault name="AuthorizationFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="InvalidArgumentFault">
+                <soap12:fault name="InvalidArgumentFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="DuplicateRecordFault">
+                <soap12:fault name="DuplicateRecordFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="AuthenticationFault">
+                <soap12:fault name="AuthenticationFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="addIndexValueListItem">
+            <soap12:operation soapAction="" style="document"/>
+            <wsdl:input name="addIndexValueListItem">
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="addIndexValueListItemResponse">
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="AuthorizationFault">
+                <soap12:fault name="AuthorizationFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="InvalidArgumentFault">
+                <soap12:fault name="InvalidArgumentFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="DuplicateRecordFault">
+                <soap12:fault name="DuplicateRecordFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="AuthenticationFault">
+                <soap12:fault name="AuthenticationFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getNodeIndexValueListName">
+            <soap12:operation soapAction="" style="document"/>
+            <wsdl:input name="getNodeIndexValueListName">
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getNodeIndexValueListNameResponse">
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="AuthorizationFault">
+                <soap12:fault name="AuthorizationFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="InvalidArgumentFault">
+                <soap12:fault name="InvalidArgumentFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="AuthenticationFault">
+                <soap12:fault name="AuthenticationFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getIndexValueListItems">
+            <soap12:operation soapAction="" style="document"/>
+            <wsdl:input name="getIndexValueListItems">
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getIndexValueListItemsResponse">
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="AuthorizationFault">
+                <soap12:fault name="AuthorizationFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="InvalidArgumentFault">
+                <soap12:fault name="InvalidArgumentFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="AuthenticationFault">
+                <soap12:fault name="AuthenticationFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getIndexValueListNames">
+            <soap12:operation soapAction="" style="document"/>
+            <wsdl:input name="getIndexValueListNames">
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getIndexValueListNamesResponse">
+                <soap12:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="AuthorizationFault">
+                <soap12:fault name="AuthorizationFault" use="literal"/>
+            </wsdl:fault>
+            <wsdl:fault name="AuthenticationFault">
+                <soap12:fault name="AuthenticationFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="NodesService">
+        <wsdl:port binding="tns:NodesServiceSoapBinding" name="NodesPort">
+            <soap12:address location="http://localhost:8080/webservices/SOAP/Nodes-v1.1"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

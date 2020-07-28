@@ -1,0 +1,10 @@
+\.orig$
+\.orig\..*$
+\.chg\..*$
+\.rej$
+\.conflict\~$
+^[^/]+/[^/]+/target/.*$
+^[^/]+/target/.*$
+target/
+.hg/
+.hgignore
