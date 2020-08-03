@@ -1,9 +1,11 @@
 package za.co.virtualpostman.samplevpws;
 
 import java.net.MalformedURLException;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import za.co.virtualpostman.samplevpws.wsdl.archivefile.IndexValue;
 import za.co.virtualpostman.samplevpws.wsdl.authenticate.AuthenticationFault;
 import za.co.virtualpostman.samplevpws.wsdl.authenticate.AuthorizationFault;
 import za.co.virtualpostman.samplevpws.wsdl.document.Document;
@@ -69,9 +71,32 @@ public class DocumentTaskApp {
                                 Logger.getLogger(DocumentTaskApp.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         });
+                        
+                        
                     } catch (za.co.virtualpostman.samplevpws.wsdl.document.AuthorizationFault | za.co.virtualpostman.samplevpws.wsdl.document.AuthenticationFault | za.co.virtualpostman.samplevpws.wsdl.document.InvalidArgumentFault ex) {
                         Logger.getLogger(DocumentTaskApp.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    
+                    try {
+                        /**
+                         * Adding Index Value
+                         */
+                        za.co.virtualpostman.samplevpws.wsdl.archivefile.Document document = vpc.getDocumentWebService().
+                                getDocument(session, nextDocumentInTaskQueue.getDocumenId());
+                           
+                        IndexValue indexValue = new IndexValue();
+                        indexValue.setIndexName("Status");
+                        indexValue.setIndexValue("Processed");
+                        
+                        List<IndexValue> values = new LinkedList<>();
+                        values.add(indexValue);
+                        
+                        vpc.getDocumentWebService().updateIndexes(session, document.getId(), values);
+                        
+                    } catch (za.co.virtualpostman.samplevpws.wsdl.archivefile.AuthorizationFault | za.co.virtualpostman.samplevpws.wsdl.archivefile.AuthenticationFault | za.co.virtualpostman.samplevpws.wsdl.archivefile.InvalidArgumentFault ex) {
+                        Logger.getLogger(DocumentTaskApp.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
                     System.out.println("Processing the document");
                     /**
                      * Setting Task Queue Success
