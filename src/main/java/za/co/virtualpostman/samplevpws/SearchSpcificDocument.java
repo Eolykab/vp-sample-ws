@@ -18,7 +18,7 @@ import za.co.virtualpostman.samplews.wsclient.VirtualPostmanClient;
 public class SearchSpcificDocument {
 
     public static void main(String[] args) {
-        VirtualPostmanClient vpc = new VirtualPostmanClient("https://poc.virtualpostman.co.za/external", "admin", "admin");
+        VirtualPostmanClient vpc = new VirtualPostmanClient("https://poc.virtualpostman.co.za/idmuat", "admin", "admin");
 
         /**
          * Set the waybill number/Or barcode you want to query for below.
@@ -26,8 +26,8 @@ public class SearchSpcificDocument {
          * number you need) And store these in a list of IndexValues
          */
         IndexValue indexValue = new IndexValue();
-        indexValue.setIndexName("THE_NODE_INDEX_NAME");
-        indexValue.setIndexValue("THE_BARCODE_VALUE");
+        indexValue.setIndexName("From");
+        indexValue.setIndexValue("TEST@TEST.COM");
 
         List<IndexValue> indexValues = new LinkedList<>();
         indexValues.add(indexValue);
@@ -49,7 +49,8 @@ public class SearchSpcificDocument {
          */
         List<Document> docs;
         try {
-            docs = vpc.getDocumentsWebService().findDocuments(vpc.getSessionId(), "THE_NODE_YOU_WANT_TO_QUERY_FROM", indexValues, startDate, endDate, 0, 0, "THE_NODE_INDEX_NAME", true);
+            System.out.println("Session ID " + vpc.getSessionId());
+            docs = vpc.getDocumentsWebService().findDocuments(vpc.getSessionId(), "idm_uat_cob@virtualpostman.co.za-attachments-manual", indexValues, startDate, endDate, 0, 0, "From", true);
         } catch (za.co.virtualpostman.samplevpws.wsdl.authenticate.AuthorizationFault | za.co.virtualpostman.samplevpws.wsdl.authenticate.AuthenticationFault | za.co.virtualpostman.samplevpws.wsdl.document.AuthorizationFault | za.co.virtualpostman.samplevpws.wsdl.document.AuthenticationFault | za.co.virtualpostman.samplevpws.wsdl.document.InvalidArgumentFault ex) {
             throw new RuntimeException("Unable to find document", ex);
         }
@@ -59,6 +60,7 @@ public class SearchSpcificDocument {
         }
 
         for (Document doc : docs) {
+            System.out.println("Doc ID : " + doc.getId());
             byte[] pdf;
             try {
                 pdf = vpc.getDocumentWebService().getDocumentContentAsPdf(vpc.getSessionId(), doc.getId());

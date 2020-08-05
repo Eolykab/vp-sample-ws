@@ -64,7 +64,7 @@ public class VirtualPostmanClient {
     public Documents getDocumentsWebService() {
         if (docWebService == null) {
             docWebService = new DocumentsService(VirtualPostmanClient.class.getResource("/webservices/wsdl/Documents-v1.6.wsdl")).getDocumentsPort();
-            ((BindingProvider) docWebService).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, normaliseServerUrl(serverURL) + "webservices/SOAP/Documents-v1.6?wsdl");
+            ((BindingProvider) docWebService).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, normaliseServerUrl(serverURL) + "webservices/SOAP/Documents-v1.5?wsdl");
         }
         return docWebService;
     }
