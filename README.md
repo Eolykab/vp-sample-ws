@@ -5,5 +5,5 @@ Virtual Postman Sample Webservice App
 
 - Maven
 # Installation
-- ``` maven clean install ```
+- ``` mvn clean install ```
 - Then you can run any sample app.
